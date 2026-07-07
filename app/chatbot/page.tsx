@@ -1,5 +1,4 @@
-// app/chatbot/page.tsx — full updated file
-
+// app/chatbot/page.tsx
 "use client";
 
 import Link from "next/link";
@@ -76,24 +75,24 @@ export default function ChatbotPage() {
 
   return (
     <main className="min-h-screen bg-[#0a0e17] text-white">
-      <div className="max-w-4xl mx-auto px-6 py-12">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
 
         <Link
           href="/"
-          className="inline-flex items-center gap-1.5 text-sm text-slate-400 hover:text-white transition-colors mb-8"
+          className="inline-flex items-center gap-1.5 text-sm text-slate-400 hover:text-white transition-colors mb-6 sm:mb-8"
         >
           ← Back to home
         </Link>
 
-        <div className="mb-10">
+        <div className="mb-6 sm:mb-10">
           <p className="text-xs tracking-[0.2em] uppercase text-slate-400 mb-3">
             Ask anything
           </p>
-          <h1 className="text-3xl md:text-4xl font-semibold tracking-tight">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight">
             AI Civic Assistant
           </h1>
           <div className="mt-4 h-[3px] w-20 rounded-full bg-gradient-to-r from-orange-400 via-white/40 to-green-500" />
-          <p className="text-slate-400 mt-4 max-w-lg">
+          <p className="text-slate-400 mt-4 max-w-lg text-sm sm:text-base">
             Ask about government services, documents or schemes — in your
             language.
           </p>
@@ -117,7 +116,7 @@ export default function ChatbotPage() {
           </select>
         </div>
 
-        <div className="grid sm:grid-cols-2 gap-3 mb-8">
+        <div className="grid sm:grid-cols-2 gap-3 mb-6 sm:mb-8">
           {examples.map((item) => (
             <button
               key={item}
@@ -130,7 +129,7 @@ export default function ChatbotPage() {
           ))}
         </div>
 
-        <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
+        <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4 sm:p-6">
           <div className="flex items-center justify-between mb-2">
             <label className="block text-xs uppercase tracking-wide text-slate-500">
               Your question
@@ -159,7 +158,7 @@ export default function ChatbotPage() {
           <button
             onClick={askAI}
             disabled={loading}
-            className="mt-4 rounded-lg bg-orange-500 hover:bg-orange-600 disabled:opacity-50 disabled:hover:bg-orange-500
+            className="mt-4 w-full sm:w-auto rounded-lg bg-orange-500 hover:bg-orange-600 disabled:opacity-50 disabled:hover:bg-orange-500
             transition-colors px-8 py-3 text-sm font-medium"
           >
             {loading ? "🧠 Thinking..." : "Ask AI"}
@@ -173,11 +172,11 @@ export default function ChatbotPage() {
         )}
 
         {(loading || answer) && (
-          <div className="mt-6 flex gap-3">
+          <div className="mt-6 flex gap-2 sm:gap-3">
             <div className="shrink-0 h-8 w-8 rounded-full bg-white/5 flex items-center justify-center text-sm">
               🤖
             </div>
-            <div className="flex-1 rounded-2xl rounded-tl-sm border border-white/10 bg-white/[0.03] p-5">
+            <div className="flex-1 min-w-0 rounded-2xl rounded-tl-sm border border-white/10 bg-white/[0.03] p-4 sm:p-5">
               {loading ? (
                 <div className="flex gap-1.5 items-center h-5">
                   <span className="h-1.5 w-1.5 rounded-full bg-slate-500 animate-bounce [animation-delay:-0.3s]" />
@@ -187,7 +186,7 @@ export default function ChatbotPage() {
               ) : answer ? (
                 <div className="space-y-4 text-sm text-slate-300 leading-relaxed">
                   <div>
-                    <h2 className="text-lg font-semibold text-white mb-1">
+                    <h2 className="text-base sm:text-lg font-semibold text-white mb-1">
                       {answer.title}
                     </h2>
                     <p className="text-slate-400">{answer.description}</p>
@@ -254,7 +253,7 @@ export default function ChatbotPage() {
                   )}
 
                   {answer.official_portal && answer.official_portal !== "-" && (
-                    <div className="pt-1">
+                    <div className="pt-1 break-words">
                       <span className="text-slate-500">Official portal: </span>
                       <span className="text-orange-400">
                         {answer.official_portal}

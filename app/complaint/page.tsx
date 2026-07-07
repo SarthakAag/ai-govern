@@ -1,3 +1,4 @@
+// app/complaint/page.tsx
 "use client";
 
 import Link from "next/link";
@@ -152,32 +153,32 @@ export default function ComplaintPage() {
 
   return (
     <main className="min-h-screen bg-[#0a0e17] text-white">
-      <div className="max-w-4xl mx-auto px-6 py-12">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
 
         <Link
           href="/"
-          className="inline-flex items-center gap-1.5 text-sm text-slate-400 hover:text-white transition-colors mb-8"
+          className="inline-flex items-center gap-1.5 text-sm text-slate-400 hover:text-white transition-colors mb-6 sm:mb-8"
         >
           ← Back to home
         </Link>
 
         {/* Header */}
-        <div className="mb-10">
+        <div className="mb-6 sm:mb-10">
           <p className="text-xs tracking-[0.2em] uppercase text-slate-400 mb-3">
             Report an issue
           </p>
-          <h1 className="text-3xl md:text-4xl font-semibold tracking-tight">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight">
             AI Complaint Trust Engine
           </h1>
           <div className="mt-4 h-[3px] w-20 rounded-full bg-gradient-to-r from-orange-400 via-white/40 to-green-500" />
-          <p className="text-slate-400 mt-4 max-w-lg">
+          <p className="text-slate-400 mt-4 max-w-lg text-sm sm:text-base">
             Describe the issue and AI will detect the department, urgency and
             expected timeline — and explain its reasoning.
           </p>
         </div>
 
         {/* Templates */}
-        <div className="grid sm:grid-cols-2 gap-3 mb-8">
+        <div className="grid sm:grid-cols-2 gap-3 mb-6 sm:mb-8">
           {templates.map((item) => (
             <button
               key={item}
@@ -192,9 +193,9 @@ export default function ComplaintPage() {
         </div>
 
         {/* Form */}
-        <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-7 space-y-6">
+        <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4 sm:p-7 space-y-6">
 
-          <div className="grid sm:grid-cols-2 gap-6">
+          <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
             <div>
               <label className="block text-xs uppercase tracking-wide text-slate-500 mb-2">
                 Language
@@ -225,7 +226,7 @@ export default function ComplaintPage() {
                   onChange={(e) => setLocation(e.target.value)}
                   placeholder="Ex: Whitefield, Bengaluru"
                   disabled={loading}
-                  className="flex-1 rounded-lg bg-white/[0.04] border border-white/10 p-3 text-sm
+                  className="flex-1 min-w-0 rounded-lg bg-white/[0.04] border border-white/10 p-3 text-sm
                   placeholder:text-slate-600 focus:outline-none focus:border-orange-400/50 transition-colors disabled:opacity-50"
                 />
                 <button
@@ -306,10 +307,10 @@ export default function ComplaintPage() {
 
         {/* Result */}
         {result && (
-          <div className="mt-8 rounded-2xl border border-white/10 bg-white/[0.03] p-7">
+          <div className="mt-8 rounded-2xl border border-white/10 bg-white/[0.03] p-4 sm:p-7">
 
             <div className="flex justify-between items-start flex-wrap gap-3">
-              <h2 className="text-lg font-medium">AI Trust Report</h2>
+              <h2 className="text-base sm:text-lg font-medium">AI Trust Report</h2>
               <span
                 className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium
                 bg-white/5 ring-1 ${getPriorityStyle(result.priority).ring} ${getPriorityStyle(result.priority).text}`}
@@ -332,7 +333,7 @@ export default function ComplaintPage() {
               </div>
             )}
 
-            <div className="grid sm:grid-cols-2 gap-6 mt-6 pt-6 border-t border-white/5">
+            <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 mt-6 pt-6 border-t border-white/5">
               <div>
                 <p className="text-xs uppercase tracking-wide text-slate-500 mb-1.5">
                   Department
@@ -347,7 +348,7 @@ export default function ComplaintPage() {
               </div>
             </div>
 
-            <div className="mt-6 rounded-xl bg-orange-500/[0.04] border border-orange-500/10 p-5 space-y-4">
+            <div className="mt-6 rounded-xl bg-orange-500/[0.04] border border-orange-500/10 p-4 sm:p-5 space-y-4">
               <div className="flex items-center gap-2 text-xs uppercase tracking-wide text-orange-400/80">
                 <span>🤖</span> AI reasoning
               </div>
@@ -382,10 +383,10 @@ export default function ComplaintPage() {
               )}
             </div>
 
-            <div className="flex flex-wrap gap-3 mt-7">
+            <div className="flex flex-col sm:flex-row flex-wrap gap-3 mt-7">
               <Link
                 href="/tracker"
-                className="rounded-lg bg-orange-500 hover:bg-orange-600 transition-colors px-6 py-2.5 text-sm font-medium"
+                className="text-center rounded-lg bg-orange-500 hover:bg-orange-600 transition-colors px-6 py-2.5 text-sm font-medium"
               >
                 View trust dashboard
               </Link>

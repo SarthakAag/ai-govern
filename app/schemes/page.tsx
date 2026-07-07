@@ -1,3 +1,4 @@
+// app/schemes/page.tsx
 "use client";
 
 import Link from "next/link";
@@ -56,33 +57,33 @@ export default function SchemePage() {
 
   return (
     <main className="min-h-screen bg-[#0a0e17] text-white">
-      <div className="max-w-4xl mx-auto px-6 py-12">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
 
         <Link
           href="/"
-          className="inline-flex items-center gap-1.5 text-sm text-slate-400 hover:text-white transition-colors mb-8"
+          className="inline-flex items-center gap-1.5 text-sm text-slate-400 hover:text-white transition-colors mb-6 sm:mb-8"
         >
           ← Back to home
         </Link>
 
         {/* Header */}
-        <div className="mb-10">
+        <div className="mb-6 sm:mb-10">
           <p className="text-xs tracking-[0.2em] uppercase text-slate-400 mb-3">
             Find what you&apos;re eligible for
           </p>
-          <h1 className="text-3xl md:text-4xl font-semibold tracking-tight">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight">
             AI Scheme Recommender
           </h1>
           <div className="mt-4 h-[3px] w-20 rounded-full bg-gradient-to-r from-orange-400 via-white/40 to-green-500" />
-          <p className="text-slate-400 mt-4 max-w-lg">
+          <p className="text-slate-400 mt-4 max-w-lg text-sm sm:text-base">
             Tell us a bit about yourself and AI will match you to relevant
             government schemes.
           </p>
         </div>
 
         {/* Form */}
-        <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-7 space-y-6">
-          <div className="grid sm:grid-cols-2 gap-6">
+        <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4 sm:p-7 space-y-6">
+          <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
             <div>
               <label className="block text-xs uppercase tracking-wide text-slate-500 mb-2">
                 Age
@@ -167,7 +168,7 @@ export default function SchemePage() {
           <button
             onClick={recommendSchemes}
             disabled={loading}
-            className="rounded-lg bg-orange-500 hover:bg-orange-600 disabled:opacity-50 disabled:hover:bg-orange-500
+            className="w-full sm:w-auto rounded-lg bg-orange-500 hover:bg-orange-600 disabled:opacity-50 disabled:hover:bg-orange-500
             transition-colors px-8 py-3 text-sm font-medium"
           >
             {loading ? "🧠 Finding schemes..." : "Find my schemes"}
@@ -176,8 +177,8 @@ export default function SchemePage() {
 
         {/* Result */}
         {(loading || result) && (
-          <div className="mt-8 rounded-2xl border border-white/10 bg-white/[0.03] p-7">
-            <h2 className="text-lg font-medium mb-6">Recommended Schemes</h2>
+          <div className="mt-8 rounded-2xl border border-white/10 bg-white/[0.03] p-4 sm:p-7">
+            <h2 className="text-base sm:text-lg font-medium mb-6">Recommended Schemes</h2>
 
             {loading ? (
               <div className="flex gap-1.5 items-center h-5">

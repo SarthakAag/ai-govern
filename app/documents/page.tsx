@@ -1,3 +1,4 @@
+// app/documents/page.tsx
 "use client";
 
 import Link from "next/link";
@@ -95,25 +96,25 @@ export default function DocumentPage() {
 
   return (
     <main className="min-h-screen bg-[#0a0e17] text-white">
-      <div className="max-w-4xl mx-auto px-6 py-12">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
 
         <Link
           href="/"
-          className="inline-flex items-center gap-1.5 text-sm text-slate-400 hover:text-white transition-colors mb-8"
+          className="inline-flex items-center gap-1.5 text-sm text-slate-400 hover:text-white transition-colors mb-6 sm:mb-8"
         >
           ← Back to home
         </Link>
 
         {/* Header */}
-        <div className="mb-10">
+        <div className="mb-6 sm:mb-10">
           <p className="text-xs tracking-[0.2em] uppercase text-slate-400 mb-3">
             Know before you go
           </p>
-          <h1 className="text-3xl md:text-4xl font-semibold tracking-tight">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight">
             AI Document Checklist
           </h1>
           <div className="mt-4 h-[3px] w-20 rounded-full bg-gradient-to-r from-orange-400 via-white/40 to-green-500" />
-          <p className="text-slate-400 mt-4 max-w-lg">
+          <p className="text-slate-400 mt-4 max-w-lg text-sm sm:text-base">
             Find every document you need before applying — so you&apos;re not
             turned away at the counter.
           </p>
@@ -140,7 +141,7 @@ export default function DocumentPage() {
         </div>
 
         {/* Quick-pick services */}
-        <div className="grid sm:grid-cols-3 gap-3 mb-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-6">
           {services.map((item) => (
             <button
               key={item}
@@ -149,7 +150,7 @@ export default function DocumentPage() {
                 setHaveDocs(new Set());
               }}
               disabled={loading}
-              className={`rounded-xl border p-4 text-sm text-left transition-colors disabled:opacity-50 ${
+              className={`rounded-xl border p-3 sm:p-4 text-sm text-left transition-colors disabled:opacity-50 ${
                 service === item
                   ? "border-orange-400/50 bg-orange-500/[0.06] text-white"
                   : "border-white/10 bg-white/[0.03] text-slate-300 hover:border-orange-400/40 hover:bg-white/[0.05]"
@@ -161,7 +162,7 @@ export default function DocumentPage() {
         </div>
 
         {/* Custom input + action */}
-        <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
+        <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4 sm:p-6">
           <label className="block text-xs uppercase tracking-wide text-slate-500 mb-2">
             Or enter a service
           </label>
@@ -186,7 +187,7 @@ export default function DocumentPage() {
           <button
             onClick={generateChecklist}
             disabled={loading}
-            className="mt-4 rounded-lg bg-orange-500 hover:bg-orange-600 disabled:opacity-50 disabled:hover:bg-orange-500
+            className="mt-4 w-full sm:w-auto rounded-lg bg-orange-500 hover:bg-orange-600 disabled:opacity-50 disabled:hover:bg-orange-500
             transition-colors px-8 py-3 text-sm font-medium"
           >
             {loading ? "🧠 Generating..." : "Generate checklist"}
@@ -195,13 +196,13 @@ export default function DocumentPage() {
 
         {/* Result */}
         {(loading || result) && (
-          <div className="mt-6 rounded-2xl border border-white/10 bg-white/[0.03] p-7">
+          <div className="mt-6 rounded-2xl border border-white/10 bg-white/[0.03] p-4 sm:p-7">
             <div className="flex justify-between items-start gap-3 mb-6 flex-wrap">
               <div>
                 <p className="text-xs uppercase tracking-wide text-slate-500 mb-1.5">
                   Checklist for
                 </p>
-                <h2 className="text-lg font-medium">
+                <h2 className="text-base sm:text-lg font-medium">
                   {result?.service || service || "—"}
                 </h2>
               </div>
@@ -248,7 +249,7 @@ export default function DocumentPage() {
                             type="checkbox"
                             checked={haveDocs.has(doc.name) || doc.have_it}
                             onChange={() => toggleHaveDoc(doc.name)}
-                            className="h-4 w-4 rounded accent-orange-500"
+                            className="h-4 w-4 rounded accent-orange-500 shrink-0"
                           />
                           <span
                             className={
@@ -324,7 +325,7 @@ export default function DocumentPage() {
                 )}
 
                 {result.official_portal && (
-                  <div className="pt-1">
+                  <div className="pt-1 break-words">
                     <span className="text-slate-500">Official portal: </span>
                     <span className="text-orange-400">
                       {result.official_portal}

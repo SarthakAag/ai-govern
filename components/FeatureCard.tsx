@@ -25,7 +25,7 @@ export default function FeatureCard({ emoji, title, description, href, accent }:
   return (
     <Link href={href} className="group block">
       <div
-        className={`relative h-full rounded-2xl border border-white/10 bg-white/[0.03] p-6
+        className={`relative h-full rounded-2xl border border-white/10 bg-white/[0.03] p-5 sm:p-6
         transition-all duration-300 hover:-translate-y-1 hover:bg-white/[0.06]
         hover:shadow-lg ${accentMap[accent]}`}
       >
@@ -36,10 +36,10 @@ export default function FeatureCard({ emoji, title, description, href, accent }:
         />
 
         <div className="relative">
-          <div className="w-11 h-11 flex items-center justify-center rounded-xl bg-white/5 text-xl mb-4">
+          <div className="w-10 h-10 sm:w-11 sm:h-11 flex items-center justify-center rounded-xl bg-white/5 text-lg sm:text-xl mb-3 sm:mb-4">
             {emoji}
           </div>
-          <h3 className="text-lg font-medium mb-1.5">{title}</h3>
+          <h3 className="text-base sm:text-lg font-medium mb-1.5">{title}</h3>
           <p className="text-sm text-slate-400 leading-relaxed">{description}</p>
 
           <div className="mt-4 flex items-center text-sm text-slate-500 group-hover:text-slate-300 transition-colors">

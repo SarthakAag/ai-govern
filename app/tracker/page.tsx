@@ -1,3 +1,4 @@
+// app/tracker/page.tsx
 "use client";
 
 import { useState } from "react";
@@ -37,25 +38,25 @@ export default function TrackerPage() {
 
   return (
     <main className="min-h-screen bg-[#0a0e17] text-white">
-      <div className="max-w-5xl mx-auto px-6 py-12">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
 
         <Link
           href="/"
-          className="inline-flex items-center gap-1.5 text-sm text-slate-400 hover:text-white transition-colors mb-8"
+          className="inline-flex items-center gap-1.5 text-sm text-slate-400 hover:text-white transition-colors mb-6 sm:mb-8"
         >
           ← Back to home
         </Link>
 
         {/* Header */}
-        <div className="mb-8">
+        <div className="mb-6 sm:mb-8">
           <p className="text-xs tracking-[0.2em] uppercase text-slate-400 mb-3">
             Transparency, not just a status
           </p>
-          <h1 className="text-3xl md:text-4xl font-semibold tracking-tight">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight">
             Trust Dashboard
           </h1>
           <div className="mt-4 h-[3px] w-20 rounded-full bg-gradient-to-r from-orange-400 via-white/40 to-green-500" />
-          <p className="text-slate-400 mt-4 max-w-lg">
+          <p className="text-slate-400 mt-4 max-w-lg text-sm sm:text-base">
             Every complaint here shows not just what happens, but why — the AI
             reasoning is visible at every step.
           </p>
@@ -63,30 +64,30 @@ export default function TrackerPage() {
 
         {/* Aggregate stats */}
         {stats && (
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-10">
-            <div className="rounded-xl border border-white/10 bg-white/[0.03] p-4">
-              <p className="text-2xl font-semibold">{stats.total}</p>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-8 sm:mb-10">
+            <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3 sm:p-4">
+              <p className="text-xl sm:text-2xl font-semibold">{stats.total}</p>
               <p className="text-xs text-slate-500 mt-1">Total complaints</p>
             </div>
-            <div className="rounded-xl border border-white/10 bg-white/[0.03] p-4">
-              <p className="text-2xl font-semibold">{stats.departments}</p>
+            <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3 sm:p-4">
+              <p className="text-xl sm:text-2xl font-semibold">{stats.departments}</p>
               <p className="text-xs text-slate-500 mt-1">Departments involved</p>
             </div>
-            <div className="rounded-xl border border-orange-500/20 bg-orange-500/[0.04] p-4">
-              <p className="text-2xl font-semibold text-orange-400">
+            <div className="rounded-xl border border-orange-500/20 bg-orange-500/[0.04] p-3 sm:p-4">
+              <p className="text-xl sm:text-2xl font-semibold text-orange-400">
                 {stats.byPriority["Critical"] || 0}
               </p>
               <p className="text-xs text-slate-500 mt-1">Critical priority</p>
             </div>
-            <div className="rounded-xl border border-white/10 bg-white/[0.03] p-4">
-              <p className="text-2xl font-semibold">{stats.flagged}</p>
+            <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3 sm:p-4">
+              <p className="text-xl sm:text-2xl font-semibold">{stats.flagged}</p>
               <p className="text-xs text-slate-500 mt-1">Vulnerability-flagged</p>
             </div>
           </div>
         )}
 
         {complaints.length === 0 ? (
-          <div className="rounded-2xl border border-white/10 bg-white/[0.02] py-16 text-center">
+          <div className="rounded-2xl border border-white/10 bg-white/[0.02] py-16 px-4 text-center">
             <p className="text-slate-400">No complaints submitted yet.</p>
             <Link
               href="/complaint"
@@ -96,17 +97,17 @@ export default function TrackerPage() {
             </Link>
           </div>
         ) : (
-          <div className="space-y-6">
+          <div className="space-y-5 sm:space-y-6">
             {complaints.map((item) => {
               const style = getPriorityStyle(item.priority);
               return (
                 <div
                   key={item.id}
-                  className="rounded-2xl border border-white/10 bg-white/[0.03] p-7"
+                  className="rounded-2xl border border-white/10 bg-white/[0.03] p-4 sm:p-7"
                 >
                   <div className="flex justify-between items-start flex-wrap gap-3">
                     <div>
-                      <h2 className="text-lg font-medium">
+                      <h2 className="text-base sm:text-lg font-medium">
                         Complaint #{item.id}
                       </h2>
                       <p className="text-sm text-slate-400 mt-0.5">
@@ -141,7 +142,7 @@ export default function TrackerPage() {
                     {item.complaint}
                   </p>
 
-                  <div className="grid sm:grid-cols-2 gap-6 mt-6 pt-6 border-t border-white/5">
+                  <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 mt-6 pt-6 border-t border-white/5">
                     <div>
                       <p className="text-xs uppercase tracking-wide text-slate-500 mb-1.5">
                         Expected resolution
@@ -156,7 +157,7 @@ export default function TrackerPage() {
                     </div>
                   </div>
 
-                  <div className="mt-6 rounded-xl bg-orange-500/[0.04] border border-orange-500/10 p-5 space-y-4">
+                  <div className="mt-6 rounded-xl bg-orange-500/[0.04] border border-orange-500/10 p-4 sm:p-5 space-y-4">
                     <div className="flex items-center gap-2 text-xs uppercase tracking-wide text-orange-400/80">
                       <span>🤖</span> AI reasoning
                     </div>
