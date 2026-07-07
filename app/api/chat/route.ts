@@ -1,13 +1,30 @@
+// app/api/chat/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { ai } from "@/lib/gemini";
 
+const MAX_QUESTION_LENGTH = 2000;
+
 export async function POST(req: NextRequest) {
   try {
+    if (req.headers.get("content-type") !== "application/json") {
+      return NextResponse.json(
+        { error: "Invalid content type. Expected application/json." },
+        { status: 415 }
+      );
+    }
+
     const { question, language, simplified } = await req.json();
 
     if (!question?.trim()) {
       return NextResponse.json(
         { error: "Question is required" },
+        { status: 400 }
+      );
+    }
+
+    if (question.length > MAX_QUESTION_LENGTH) {
+      return NextResponse.json(
+        { error: `Question must be under ${MAX_QUESTION_LENGTH} characters.` },
         { status: 400 }
       );
     }

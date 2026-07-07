@@ -1,3 +1,4 @@
+// app/api/complaint/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { ai } from "@/lib/gemini";
 import { complaintPrompt } from "@/lib/prompts";
@@ -13,6 +14,8 @@ interface ComplaintResult {
   escalation_note: string;
   impact_note: string;
 }
+
+const MAX_COMPLAINT_LENGTH = 2000;
 
 const fallback: ComplaintResult = {
   priority: "Medium",
@@ -31,11 +34,25 @@ const fallback: ComplaintResult = {
 
 export async function POST(req: NextRequest) {
   try {
+    if (req.headers.get("content-type") !== "application/json") {
+      return NextResponse.json(
+        { error: "Invalid content type. Expected application/json." },
+        { status: 415 }
+      );
+    }
+
     const { complaint, language } = await req.json();
 
     if (!complaint?.trim()) {
       return NextResponse.json(
         { error: "Complaint text is required." },
+        { status: 400 }
+      );
+    }
+
+    if (complaint.length > MAX_COMPLAINT_LENGTH) {
+      return NextResponse.json(
+        { error: `Complaint must be under ${MAX_COMPLAINT_LENGTH} characters.` },
         { status: 400 }
       );
     }

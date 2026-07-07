@@ -1,3 +1,4 @@
+// app/api/documents/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { ai } from "@/lib/gemini";
 
@@ -18,6 +19,8 @@ interface ChecklistResponse {
   readiness_score: number;
 }
 
+const MAX_SERVICE_LENGTH = 300;
+
 const fallback: ChecklistResponse = {
   service: "Government Service",
   required_documents: [],
@@ -32,11 +35,25 @@ const fallback: ChecklistResponse = {
 
 export async function POST(req: NextRequest) {
   try {
+    if (req.headers.get("content-type") !== "application/json") {
+      return NextResponse.json(
+        { error: "Invalid content type. Expected application/json." },
+        { status: 415 }
+      );
+    }
+
     const { service, language, have } = await req.json();
 
     if (!service?.trim()) {
       return NextResponse.json(
         { error: "Service is required." },
+        { status: 400 }
+      );
+    }
+
+    if (service.length > MAX_SERVICE_LENGTH) {
+      return NextResponse.json(
+        { error: `Service name must be under ${MAX_SERVICE_LENGTH} characters.` },
         { status: 400 }
       );
     }
